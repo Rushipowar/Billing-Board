@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Billing Information</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function showSuccessPage(event) {
+        event.preventDefault();
+        document.body.innerHTML = `
+          <div class='flex items-center justify-center h-screen bg-gray-100'>
+            <div class='bg-white p-8 rounded-md shadow-md text-center'>
+              <h1 class='text-2xl font-bold mb-4 text-green-500'>Payment Successful</h1>
+              <p class='text-gray-400 mb-6'>Your payment has been processed successfully!</p>
+              <button 
+                onclick='location.reload()' 
+                class='bg-white border border-blue-500 text-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 hover:text-white'>
+                Back to Billing
+              </button>
+            </div>
+          </div>
+        `;
+      }
+    </script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-md shadow-md">
+      <h1 class="text-2xl font-bold mb-2">Billing Information</h1>
+      <p class="text-gray-600 mb-6">Update your billing details and address</p>
+
+      <form id="billing-form" class="space-y-6" onsubmit="showSuccessPage(event)">
+        <div>
+          <h2 class="text-lg font-semibold">Payment Details</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label for="card-number" class="block text-sm font-medium text-gray-700">Card Number</label>
+              <div class="relative">
+                <input
+                  type="text"
+                  id="card-number"
+                  class="w-full p-2 border border-gray-200 rounded-md pl-10"
+                  placeholder="1234 1234 1234 1234"
+                  required
+                />
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Card Logo" class="h-5" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <label for="card-holder" class="block text-sm font-medium text-gray-700">Cardholder Name</label>
+              <input
+                type="text"
+                id="card-holder"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="Full name on card"
+                required
+              />
+            </div>
+            <div>
+              <label for="expiry" class="block text-sm font-medium text-gray-700">Expiry</label>
+              <input
+                type="text"
+                id="expiry"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+            <div>
+              <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+              <input
+                type="text"
+                id="cvv"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="123"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            class="w-full p-2 border border-gray-200 rounded-md"
+            placeholder="user@example.com"
+            required
+          />
+        </div>
+
+        <div>
+          <h2 class="text-lg font-semibold">Address Details</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label for="country" class="block text-sm font-medium text-gray-700">Country/Region</label>
+              <select id="country" class="w-full p-2 border border-gray-200 rounded-md" required>
+                <option value="">Select Country</option>
+                <option value="IND">India</option>
+                <option value="RS">Russia</option>
+                <option value="UK">United Kingdom</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+              </select>
+            </div>
+            <div>
+              <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+              <input
+                type="text"
+                id="address"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="Street address"
+                required
+              />
+            </div>
+            <div>
+              <label for="apartment" class="block text-sm font-medium text-gray-700">Apartment, suite, etc. (optional)</label>
+              <input
+                type="text"
+                id="apartment"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="Apartment, suite, etc."
+              />
+            </div>
+            <div>
+              <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+              <input
+                type="text"
+                id="city"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="City"
+                required
+              />
+            </div>
+            <div>
+              <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+              <select id="state" class="w-full p-2 border border-gray-200 rounded-md" required>
+                <option value="">Select State</option>
+                <option value="CA">California</option>
+                <option value="NY">New York</option>
+                <option value="MI">Mumbai</option>
+                <option value="DH">Delhi</option>
+              </select>
+            </div>
+            <div>
+              <label for="zip" class="block text-sm font-medium text-gray-700">Zip</label>
+              <input
+                type="text"
+                id="zip"
+                class="w-full p-2 border border-gray-200 rounded-md"
+                placeholder="12345"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-500 border text-white p-2 rounded-md hover:bg-white hover:text-blue-500 hover:border-blue-500 duration-300 disabled:opacity-50">Save Changes</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+
